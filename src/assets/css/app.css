@@ -10,6 +10,7 @@ body {
 {
     font-family: 'Roboto Condensed', sans-serif;
     border-radius: 3px;
+    border-bottom-width:5px;
 }
 
 .btn-warning,.btn-warning:hover,.btn-warning:active,.btn-warning:focus{
