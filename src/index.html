@@ -66,6 +66,11 @@
   <script src="app/core/firebaseData.service.js"></script>
   <script src="app/core/party.service.js"></script>
   <script src="app/core/textMessage.service.js"></script>
+  <script>
+    $(document).on('click','.navbar a',function(e) {
+      $('.navbar-toggle').click() //bootstrap 3.x by Richard
+    });
+  </script>
   <script type="text/javascript">
     WebFontConfig = {
       google: { families: [ 'Roboto+Condensed:400,700:latin' ] }

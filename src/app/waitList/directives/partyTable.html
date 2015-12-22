@@ -13,25 +13,28 @@
             </td>
             <td>
                 <div><strong>{{ party.name }}</strong></div>
-                <p>
-                    <div>{{ party.size }} people</div>
-                    <div>{{ party.phone }}</div>
-                    <div am-time-ago="party.created"></div>
-                </p>
+                
+                <div>{{ party.size }} people</div>
+                <div>{{ party.phone }}</div>
+                <div am-time-ago="party.created"></div>
+                
             </td>
             <td>
                 <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-default btn-sm" style="margin-bottom:10px">
                     <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
-                    {{ party.done ? 'Assigned' : 'Assign' }}
+                    {{ party.done ? 'Mark undone' : 'Mark done' }}
                 </button>
+                <br>
                 <button ng-click="vm.sendTextMessage(party)" class="btn btn-warning btn-sm"  style="margin-bottom:10px">
                     <i class="fa fa-envelope-o"></i> Send SMS
                 </button>
+                <br>
                 <button ng-click="vm.removeParty(party)" class="btn btn-danger btn-sm" style="margin-bottom:10px">
                     Delete <i class="fa fa-trash"></i>
                 </button>
-                <div>Assigned: <i ng-class="{'fa fa-check-square text-success':party.done,'fa fa-times text-danger':!party.done}"></i></div>
-                <div>Notified: <i ng-class="{'fa fa-check-square text-success':party.notified,'fa fa-times text-danger':!party.notified}"></i></div>
+                <br>
+                <div>Table Assigned: <i ng-class="{'fa fa-check-square text-success':party.done,'fa fa-times text-danger':!party.done}"></i></div>
+                <div>Notified via SMS: <i ng-class="{'fa fa-check-square text-success':party.notified,'fa fa-times text-danger':!party.notified}"></i></div>
             </td>
         </tr>
     </table>
