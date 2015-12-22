@@ -1,0 +1,9 @@
+{
+  "firebase": "cozywait",
+  "public": "src",
+  "ignore": [
+    "firebase.json",
+    "**/.*",
+    "**/node_modules/**"
+  ]
+}

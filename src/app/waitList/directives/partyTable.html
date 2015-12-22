@@ -1,4 +1,4 @@
-<div class="table-responsive">
+<div class="table-responsive1">
     <table class="table table-bordered">
         <thead>
             <tr class="warning">
@@ -15,26 +15,28 @@
                 {{$index+1}}
             </td>
             <td>
-
-                <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-primary">
+            <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-primary btn-sm" style="margin-bottom:10px">
                     <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
                     {{ party.done ? 'Assigned' : 'Assign' }}
                 </button>
+                <button ng-click="vm.sendTextMessage(party)" class="btn btn-default btn-sm"  style="margin-bottom:10px">
+                    <i class="fa fa-envelope-o"></i> Send SMS
+                </button>
             </td>
             <td>
-                <div><strong>{{ party.name }} ({{ party.size }} people)</strong></div>
+                <div><strong>{{ party.name }}</strong></div>
+                <div>{{ party.size }} people</div>
+
                 <div>{{ party.phone }}</div>
             </td>
-            <td>
-                {{party.created | date:'medium'}}
+            <td am-time-ago="party.created">
+
             </td>
             <td ng-class="{'success':party.notified}">
                 <div>{{ party.notified ? 'Yes' : 'No' }}</div>
             </td>
             <td>
-                <button ng-click="vm.sendTextMessage(party)" class="btn btn-default">
-                    <i class="fa fa-envelope-o"></i> Send SMS
-                </button>
+
                 <button ng-click="vm.removeParty(party)" class="btn btn-danger">
                     <i class="fa fa-trash"></i>
                 </button>
