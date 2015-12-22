@@ -17,7 +17,7 @@ The app uses these technologies:
 * Firebase 2.2.x
 * AngularFire 1.1.x
 * Bootstrap 3.3.x
-* Zapier
+* MSG91
 
 
 ## Contact
