@@ -28,7 +28,8 @@
     vm.toggleDone = toggleDone;
 
     function removeParty(party) {
-      vm.parties.$remove(party);
+      party.deleted = Firebase.ServerValue.TIMESTAMP;
+      vm.parties.$save(party);
     }
 
     function sendTextMessage(party) {

@@ -17,13 +17,13 @@
     </div>
 
     <!-- Password input -->
-    <input type="password" ng-model="vm.user.password" name="password" placeholder="password" required="" class="form-control" />
+    <input type="password" ng-model="vm.user.password" name="password" placeholder="Password" required="" class="form-control" />
 
     <!-- Password error -->
     <div ng-show="authForm.$submitted">
         <p ng-show="authForm.password.$error.required" class="text-danger">Password required</p>
     </div>
 
-    <input type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user})" ng-value="vm.formTitle" class="btn btn-lg btn-primary btn-block"/>
+    <input type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user})" ng-value="vm.formTitle" class="btn btn-lg btn-warning btn-block"/>
 
 </form>

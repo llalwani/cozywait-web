@@ -23,7 +23,7 @@
         name: party.name
       };
       firebaseDataService.textMessages.push(newTextMessage);
-      party.notified = true;
+      party.notified = Firebase.ServerValue.TIMESTAMP;
       parties.$save(party);
     }
   }

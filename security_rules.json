@@ -1,17 +1,31 @@
 {
   "rules": {
-    "emails": {
-      ".read": false,
-      ".write": "auth != null"
+     "users": {
+         "$user": {
+            ".read": "auth.uid === $user",
+            ".write": "auth.uid === $user && (!newData.exists() || newData.hasChildren())",
+            "name": {
+               ".validate": "newData.isString() && newData.val().length <= 2000"
+            },
+            "email": {
+               ".validate": "newData.isString() && newData.val().length <= 2000"
+            },
+            "$other": {
+               ".validate": false
+            }
+         }
     },
     "textMessages": {
       ".read": false,
       ".write": "auth != null"
     },
-    "users": {
+    "customers": {
       "$userId": {
         ".read": "auth != null && auth.uid == $userId",
-        ".write": "auth != null && auth.uid == $userId"
+        ".write": "auth != null && auth.uid == $userId",
+        "parties":{
+          ".indexOn": ["created","deleted"] 
+        }
       }
     }
   }

@@ -1,0 +1,105 @@
+/* Starter template */
+
+body {
+    padding-top: 80px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* button style */
+.btn
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    border-radius: 3px;
+}
+
+.btn-warning,.btn-warning:hover,.btn-warning:active,.btn-warning:focus{
+  color: #5e5e5e;
+  background-color: #FFEB3B;
+  border-color: #FFE500;
+  border-bottom:5px solid #FBE100;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+.starter-template h1 {
+    font-size: 63px;
+}
+
+.party-form {
+    margin-bottom: 20px;
+}
+
+/* Auth styles */
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+    margin-bottom: 10px;
+}
+.form-signin .checkbox {
+    font-weight: normal;
+}
+.form-signin .form-control {
+    position: relative;
+    height: auto;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 16px;
+}
+.form-signin .form-control:focus {
+    z-index: 2;
+}
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin input[type="submit"] {
+    margin-top: 10px;
+}
+
+.form-signin .form-control
+{
+    border-radius: 3px;
+}
+
+/* navbar style*/
+.navbar-default {
+  background-color: #FFEB3B;
+  border-color: #FFEB3B;
+}
+
+.navbar-default .navbar-toggle {
+  background-color: none;
+  border:none;  
+
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+  background-color: #FFE500;
+  background-color:#FBE100;
+}
+
+.navbar-default .navbar-collapse.in, .navbar-default .navbar-form ,.navbar-default .navbar-collapse.collapsing{
+  border-color: #FBE100;
+  background-color:#FBE100;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    font-weight: bolder;
+}
+/* navbar style ends */

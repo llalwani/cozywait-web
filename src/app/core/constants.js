@@ -3,6 +3,6 @@
 
   angular
     .module('app.core')
-    .constant('FIREBASE_URL', 'https://waitandeat-demo.firebaseio.com/');
+    .constant('FIREBASE_URL', 'https://cozywait.firebaseio.com/');
 
 })();

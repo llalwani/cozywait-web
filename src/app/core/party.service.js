@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('app.core')
-    .factory('partyService', partyService);
+  .module('app.core')
+  .factory('partyService', partyService);
 
   partyService.$inject = ['$firebaseArray', 'firebaseDataService'];
 
@@ -11,6 +11,7 @@
 
     var service = {
       getPartiesByUser: getPartiesByUser,
+      getPartiesHistoryByUser:getPartiesHistoryByUser,
       Party: Party
     };
 
@@ -19,7 +20,11 @@
     ////////////
 
     function getPartiesByUser(uid) {
-      return $firebaseArray(firebaseDataService.users.child(uid).child('parties'));
+      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("deleted").equalTo(false));
+    }
+
+    function getPartiesHistoryByUser(uid) {
+      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("created"));
     }
 
     function Party() {
@@ -28,6 +33,8 @@
       this.size = '';
       this.done = false;
       this.notified = false;
+      this.deleted = false;
+      this.created = Firebase.ServerValue.TIMESTAMP;
     }
   }
 
