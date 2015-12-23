@@ -15,9 +15,14 @@
             }
          }
     },
-    "textMessages": {
-      ".read": false,
-      ".write": "auth != null"
+    "messages": {
+      "$userId": {
+        ".read": "auth != null && auth.uid == $userId",
+        ".write": "auth != null && auth.uid == $userId",
+        "parties":{
+          ".indexOn": ["created","number"] 
+        }
+      }
     },
     "customers": {
       "$userId": {
