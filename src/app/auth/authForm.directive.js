@@ -15,6 +15,7 @@
       scope: {
         submitAction: '&',
         error: '=',
+        loading: '=',
         formTitle: '@'
       },
       transclude: true

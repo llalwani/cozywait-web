@@ -69,7 +69,7 @@ body {
     border-top-right-radius: 0;
 }
 
-.form-signin input[type="submit"] {
+.form-signin button[type="submit"] {
     margin-top: 10px;
 }
 

@@ -12,9 +12,10 @@
 
     vm.register = register;
     vm.login = login;
-
+    vm.loading=false;
 
     function register(user) {
+      vm.loading = true;
       return authService.register(user)
       .then(function() {
         return vm.login(user);
@@ -24,20 +25,23 @@
       })
       .catch(function(error) {
         vm.error = error;
+        vm.loading=false;
       });
     }
 
     function login(user) {
-      return authService.login(user)
-      .then(function(response) {
-        $location.path('/waitlist');
-        return response;
-      })
-      .catch(function(error) {
-        vm.error = error;
-      });
-    }
+     vm.loading=true;
+     return authService.login(user)
+     .then(function(response) {
+      $location.path('/waitlist');
+      return response;
+    })
+     .catch(function(error) {
+      vm.error = error;
+      vm.loading=false;
+    });
+   }
 
-  }
+ }
 
 })();

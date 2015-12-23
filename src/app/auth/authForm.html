@@ -23,7 +23,8 @@
     <div ng-show="authForm.$submitted">
         <p ng-show="authForm.password.$error.required" class="text-danger">Password required</p>
     </div>
-
-    <input type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user})" ng-value="vm.formTitle" class="btn btn-lg btn-warning btn-block"/>
+    <button type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user}) " ng-value1="vm.formTitle" class="btn btn-lg btn-warning btn-block" ng-class="{'disabled':vm.loading}">
+    {{vm.formTitle}} <i ng-if="vm.loading" class=" fa fa-spinner fa-spin"></i>
+    </form>
 
 </form>

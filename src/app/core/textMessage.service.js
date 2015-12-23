@@ -2,14 +2,15 @@
   'use strict';
 
   angular
-    .module('app.core')
-    .factory('textMessageService', textMessageService);
+  .module('app.core')
+  .factory('textMessageService', textMessageService);
 
-  textMessageService.$inject = ['firebaseDataService'];
+  textMessageService.$inject = ['$firebaseArray','firebaseDataService'];
 
-  function textMessageService(firebaseDataService) {
+  function textMessageService($firebaseArray,firebaseDataService) {
     var service = {
-      sendTextMessage: sendTextMessage
+      sendTextMessage: sendTextMessage,
+      messages:messages
     };
 
     return service;
@@ -22,9 +23,13 @@
         size: party.size,
         name: party.name
       };
-      firebaseDataService.textMessages.push(newTextMessage);
+      firebaseDataService.messages.push(newTextMessage);
       party.notified = Firebase.ServerValue.TIMESTAMP;
       parties.$save(party);
+    }
+
+    function messages(uid) {
+      return $firebaseArray(firebaseDataService.messages.child(uid).child('parties'));
     }
   }
 
