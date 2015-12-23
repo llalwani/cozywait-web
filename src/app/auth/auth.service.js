@@ -5,9 +5,9 @@
   .module('app.auth')
   .factory('authService', authService);
 
-  authService.$inject = ['$rootScope', '$firebaseAuth', 'firebaseDataService'];
+  authService.$inject = ['$rootScope', '$firebaseAuth', 'firebaseDataService','$firebaseObject'];
 
-  function authService($rootScope, $firebaseAuth, firebaseDataService) {
+  function authService($rootScope, $firebaseAuth, firebaseDataService, $firebaseObject) {
     var firebaseAuthObject = $firebaseAuth(firebaseDataService.root);
 
     var currentUser;
@@ -22,7 +22,8 @@
       login: login,
       logout: logout,
       isLoggedIn: isLoggedIn,
-      sendWelcomeEmail: sendWelcomeEmail
+      sendWelcomeEmail: sendWelcomeEmail,
+      profile:profile
     };
 
     return service;
@@ -47,7 +48,17 @@
     }
 
     function sendWelcomeEmail(uid,email) {
-      firebaseDataService.users.child(uid).set({email: email, name: name||firstPartOfEmail(email)});
+      firebaseDataService.users.child(uid).set({
+        email: email, 
+        name: name||firstPartOfEmail(email),
+        credit: 3,
+        sms: "Your table is ready, thank you for waiting :-)"
+      });
+    }
+
+    function profile(uid)
+    {
+      return $firebaseObject(firebaseDataService.users.child(uid));
     }
 
     function firstPartOfEmail(email) {

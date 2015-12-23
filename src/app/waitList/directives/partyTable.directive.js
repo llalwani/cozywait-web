@@ -14,44 +14,52 @@
       bindToController: true,
       scope: {
         parties: '=',
-        messages:'='
+        profile: '='
       }
     }
   }
 
-  PartyTableController.$inject = [];
+  PartyTableController.$inject = ['$http'];
 
-  function PartyTableController() {
+  function PartyTableController($http) {
     var vm = this;
     vm.removeParty = removeParty;
     vm.sendTextMessage = sendTextMessage;
     vm.toggleDone = toggleDone;
+    vm.loading=false;
 
     function removeParty(party) {
       party.deleted = Firebase.ServerValue.TIMESTAMP;
       vm.parties.$save(party);
     }
 
-    // function sendTextMessage(party) {
-    //   textMessageService.sendTextMessage(party, vm.parties);
-    // }
 
     function sendTextMessage(party) {
-      var newTextMessage = {
-        phoneNumber: party.phone,
-        size: party.size,
-        name: party.name,
-        party_id : party.$id
-      };
-      vm.messages.$add(newTextMessage);
-      party.notified = Firebase.ServerValue.TIMESTAMP;
-      vm.parties.$save(party);
-    }
-
-    function toggleDone(party) {
-      vm.parties.$save(party);
-    }
+      vm.loading=true;
+      var local = JSON.parse(localStorage.getItem('firebase:session::cozywait'));
+      var data = {
+       number: party.phone,
+       size: party.size,
+       name: party.name,
+       party_id : party.$id,
+       uid:local.uid,
+       token:local.token
+     };
+     
+     $http.post("http://localhost:8080/firebase/cozywait_php/index.php", data).success(function(data, status) {
+      console.log("success");
+      console.log(data);
+    }).then(function()
+    {
+      vm.loading=false;
+    });
 
   }
+
+  function toggleDone(party) {
+    vm.parties.$save(party);
+  }
+
+}
 
 })();

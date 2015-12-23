@@ -5,12 +5,14 @@
   .module('app.core')
   .factory('textMessageService', textMessageService);
 
-  textMessageService.$inject = ['$firebaseArray','firebaseDataService'];
+  textMessageService.$inject = ['$firebaseArray','$firebaseObject','firebaseDataService'];
 
-  function textMessageService($firebaseArray,firebaseDataService) {
+  function textMessageService($firebaseArray,$firebaseObject,firebaseDataService) {
     var service = {
       sendTextMessage: sendTextMessage,
-      messages:messages
+      messages:messages,
+      credit:credit,
+      sms:sms
     };
 
     return service;
@@ -20,12 +22,12 @@
     function sendTextMessage(party, parties) {
       var newTextMessage = {
         phoneNumber: party.phone,
-        size: party.size,
-        name: party.name
       };
+
       firebaseDataService.messages.push(newTextMessage);
       party.notified = Firebase.ServerValue.TIMESTAMP;
       parties.$save(party);
+
     }
 
     function messages(uid) {

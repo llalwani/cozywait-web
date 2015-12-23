@@ -5,17 +5,18 @@
   .module('app.waitList')
   .controller('WaitListController', WaitListController);
 
-  WaitListController.$inject = ['$rootScope', 'partyService','textMessageService','user'];
+  WaitListController.$inject = ['$rootScope', 'partyService','authService','user'];
 
-  function WaitListController($rootScope, partyService, textMessageService, user) {
+  function WaitListController($rootScope, partyService, authService, user) {
     var vm = this;
-
+    vm.profile = authService.profile(user.uid);
     vm.parties = partyService.getPartiesByUser(user.uid);
-    vm.messages = textMessageService.messages(user.uid);
+    
+    console.log(vm);
 
     $rootScope.$on('logout', function() {
       vm.parties.$destroy();
-      vm.messages.$destroy();
+      vm.profile.$destroy();
     });
   }
 
