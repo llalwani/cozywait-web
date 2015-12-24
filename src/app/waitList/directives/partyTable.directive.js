@@ -46,7 +46,7 @@
        token:local.token
      };
      
-     $http.post("http://www.washkart.io/cozywait/index.php", data).success(function(data, status) {
+     $http.post("https://www.mywedstory.com/cozywait/index.php", data).success(function(data, status) {
       console.log("success");
       vm.loading=false;
 
