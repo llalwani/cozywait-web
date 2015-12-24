@@ -2,14 +2,16 @@
   'use strict';
 
   angular
-    .module('app.landing')
-    .config(configFunction);
+  .module('app.landing')
+  .config(configFunction);
 
   configFunction.$inject = ['$routeProvider'];
 
   function configFunction($routeProvider) {
     $routeProvider.when('/', {
-      templateUrl: 'app/landing/landing.html'
+      templateUrl: 'app/landing/landing.html',
+      controller: 'LandingController',
+      controllerAs: 'vm'
     });
   }
 
