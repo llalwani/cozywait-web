@@ -17,11 +17,14 @@
     </div>
 
     <!-- Password input -->
-    <input type="password" ng-model="vm.user.password" name="password" placeholder="Password" required="" class="form-control" />
+    <input type="password" ng-model="vm.user.password" name="password" placeholder="Password" required="" class="form-control"  ng-minlength="6"/>
 
     <!-- Password error -->
     <div ng-show="authForm.$submitted">
         <p ng-show="authForm.password.$error.required" class="text-danger">Password required</p>
+    </div>
+    <div ng-show="authForm.$submitted">
+        <p ng-show="authForm.password.$error.minlength" class="text-danger">Password should be at least 6 character long.</p>
     </div>
     <button type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user}) " ng-value1="vm.formTitle" class="btn btn-lg btn-warning btn-block" ng-class="{'disabled':vm.loading}">
     {{vm.formTitle}} <i ng-if="vm.loading" class=" fa fa-spinner fa-spin"></i>
