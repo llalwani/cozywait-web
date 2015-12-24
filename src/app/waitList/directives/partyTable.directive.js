@@ -4,6 +4,7 @@
 	angular
 	.module('app.waitList')
 	.directive('gzPartyTable', gzPartyTable);
+	
 
 	function gzPartyTable() {
 		return {
@@ -19,9 +20,11 @@
 		}
 	}
 
-	PartyTableController.$inject = ['$http'];
 
-	function PartyTableController($http) {
+
+	PartyTableController.$inject = ['$scope','$http'];
+
+	function PartyTableController($scope,$http) {
 		var vm = this;
 		vm.removeParty = removeParty;
 		vm.sendTextMessage = sendTextMessage;
@@ -56,6 +59,11 @@
 				},
 				error : function(request,error) {
 					vm.loading=false;
+				},
+				complete:function()
+				{
+					vm.loading=false;
+					$scope.$apply();
 				}
 			});
 		}
