@@ -30,9 +30,13 @@
 		vm.sendTextMessage = sendTextMessage;
 		vm.toggleDone = toggleDone;
 		vm.loading=false;
+		vm.fromNow=fromNow;
+		vm.dueWaiting=dueWaiting;
+		
 
 		function removeParty(party) {
 			party.deleted = Firebase.ServerValue.TIMESTAMP;
+			party.done = false;
 			vm.parties.$save(party);
 		}
 
@@ -69,7 +73,27 @@
 		}
 
 		function toggleDone(party) {
+			party.deleted = Firebase.ServerValue.TIMESTAMP;
+			// party.done = false;
 			vm.parties.$save(party);
+		}
+
+		function fromNow(date)
+		{
+			var m=moment(date);
+			return m.fromNow(true);
+		}
+
+		var current=moment();
+
+		function dueWaiting(date,due)
+		{
+			if(due)
+			{
+				var Quote=moment(date).add(due,'minutes');
+				return Quote.diff(current);
+			}
+			return false;
 		}
 
 	}

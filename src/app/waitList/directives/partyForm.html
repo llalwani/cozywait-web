@@ -6,7 +6,10 @@
         <input ng-model="vm.newParty.phone" type="number" class="form-control" placeholder="Phone" ng-required="true" name="phone">
     </div>
     <div class="form-group">
-        <input ng-model="vm.newParty.size" type="number" class="form-control" placeholder="Number of person" ng-required="true" min="1" name="size">
+        <input ng-model="vm.newParty.size" type="number" class="form-control" placeholder="Number of persons" ng-required="true" min="1" name="size">
+    </div>
+    <div class="form-group">
+        <input ng-model="vm.newParty.quote" type="number" class="form-control" placeholder="Waiting Time (in mins)" ng-required="true" min="5" name="size">
     </div>
     <button type="submit" class="btn btn-warning" ng-click="PartyForm.$valid && vm.addParty();">Add Customer</button>
 </form>

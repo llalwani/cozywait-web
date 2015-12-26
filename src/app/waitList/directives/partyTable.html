@@ -1,83 +1,75 @@
-<div class="">
-    <table class="table table-bordered visible-xs">
+<form class="form-inline pull-right">
+    <div class="form-group">
+        <label class="sr-only">Search</label>
+        <input type="text" class="form-control" ng-model="vm.search" placeholder="Search">
+    </div>
+</form>
+<b class="clearfix"></b>
+<br class="hidden-xs">
+<div class="" >
+    <table class="table parties">
         <thead>
             <tr class="warning">
-                <th>#</th>
+                <th class="text-center">#</th>
                 <th>Info</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tr ng-repeat="party in vm.parties | orderBy:['done','created']" ng-class="{'danger':party.done}">
-            <td>
-                {{$index+1}}
-            </td>
-            <td>
-                <div><strong>{{ party.name }}</strong></div>
-                
-                <div>{{ party.size }} people</div>
-                <div>{{ party.phone }}</div>
-                <div am-time-ago="party.created"></div>
-                
-            </td>
-            <td>
-                <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-default btn-sm" style="margin-bottom:10px">
-                    <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
-                    {{ party.done ? 'Mark undone' : 'Mark done' }}
-                </button>
-                <br>
-                <button ng-click="!party.done && vm.profile.credit && !vm.loading && vm.sendTextMessage(party)" class="btn btn-warning btn-sm"  style="margin-bottom:10px" ng-class="{'disabled':!vm.profile.credit || vm.loading || party.done}">
-                    <span ng-if="!vm.loading"><i class="fa fa-envelope-o"></i> Send SMS</span>
-                    <span ng-if="vm.loading">Sending <i class="fa fa-spinner fa-pulse"></i></span>
-                </button>
-                <br>
-                <button ng-click="vm.removeParty(party)" class="btn btn-danger btn-sm" style="margin-bottom:10px">
-                    Delete <i class="fa fa-trash"></i>
-                </button>
-                <br>
-                <div>Table Assigned: <i ng-class="{'fa fa-check-square text-success':party.done,'fa fa-times text-danger':!party.done}"></i></div>
-                <div>Notified via SMS: <i ng-class="{'fa fa-check-square text-success':party.notified,'fa fa-times text-danger':!party.notified}"></i></div>
-            </td>
-        </tr>
-    </table>
-
-    <table class="table table-bordered hidden-xs">
-        <thead>
-            <tr class="warning">
-                <th>#</th>
-                <th>Customer Info</th>
-                <th>Booked on</th>
-                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <tr ng-repeat="party in vm.parties | orderBy:['done','created']" ng-class="{'danger':party.done}">
-            <td>
-                {{$index+1}}
+        <tr ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search" ng-class="{'warning':party.done,'success':(!party.done && party.notified)}">
+            <td class="text-center">
+                <div class="btn btn-lg btn-warning">    
+                    <strong>{{ party.size }}</strong>
+                </div>
+                <br>
+                <small class="text-warning">People</small>
             </td>
             <td>
-                <div><strong>{{ party.name }}</strong></div>
-                <div>{{ party.size }} people</div>
-                <div>{{ party.phone }}</div>
-            </td>
-            <td am-time-ago="party.created">
-            </td>
-            <td ng-class="{'success':party.notified}">
-                <div>Assigned: <i ng-class="{'fa fa-check-square text-success':party.done,'fa fa-times text-danger':!party.done}"></i></div>
-                <div>Notified: <i ng-class="{'fa fa-check-square text-success':party.notified,'fa fa-times text-danger':!party.notified}"></i></div>
+                <h2 class="media-heading">
+                    <strong>{{ party.name }}</strong>
+                </h2> 
+                <h3 class="media-heading">
+                    {{ party.phone }}
+                </h3>
+                <p>
+                    Waiting <label>
+                        
+                        <span ng-bind="vm.fromNow(party.created)" class="label label-default" ng-class="{'label-danger':vm.dueWaiting(party.created,party.quote)}">
+                        </span>
+                        <span class="label label-warning" ng-if="vm.dueWaiting(party.created,party.quote)">Due</span>
+
+                    </label>
+                    <br class="visible-xs"/>
+                    <span  ng-if="party.quote"> ( Quote: in {{party.quote}} mins )</span>
+                </p>
+
             </td>
             <td>
-                <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-default btn-sm" style="margin-bottom:10px">
-                    <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
-                    {{ party.done ? 'Assigned' : 'Assign' }}
+             <div class="actions">
+                <button class="btn btn-default btn-sm" style="margin-bottom:10px">
+                    <i class="fa fa-user"></i>
                 </button>
-                <button ng-click="!party.done && vm.profile.credit && !vm.loading && vm.sendTextMessage(party)" class="btn btn-warning btn-sm"  style="margin-bottom:10px" ng-class="{'disabled':!vm.profile.credit || vm.loading || party.done}">
-                    <span ng-if="!vm.loading"><i class="fa fa-envelope-o"></i> Send SMS</span>
+                <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-warning btn-sm" style="margin-bottom:10px">
+                    <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
+                    {{ party.done ? 'ASSIGNED' : 'ASSIGN TABLE' }}
+                </button>
+                <button ng-click="!party.done && vm.profile.credit && !vm.loading && vm.sendTextMessage(party)" class="btn btn-success btn-sm"  style="margin-bottom:10px" ng-class="{'disabled':!vm.profile.credit || vm.loading || party.done}">
+                    <span ng-if="!vm.loading"><i class="fa fa-bullhorn"></i> NOTIFY</span>
                     <span ng-if="vm.loading">Sending <i class="fa fa-spinner fa-pulse"></i></span>
                 </button>
-                <button ng-click="vm.removeParty(party)" class="btn btn-danger btn-sm" style="margin-bottom:10px">
-                    Delete <i class="fa fa-trash"></i>
+                <button ng-click="vm.removeParty(party)" class="btn btn-default btn-sm" style="margin-bottom:10px">
+                    NO SHOW
                 </button>
-            </td>
-        </tr>
-    </table>
+            </div>
+            <div>
+                <div>
+                    Notified via SMS : 
+                    <strong>
+                        <i ng-class="{'fa fa-check-square text-success':party.notified,'fa fa-times text-danger':!party.notified}">
+                        </i>
+                    </strong>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
 </div>

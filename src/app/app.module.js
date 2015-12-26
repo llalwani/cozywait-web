@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app', [
+  .module('app', [
       // Angular modules.
       'ngRoute',
 
@@ -16,9 +16,9 @@
       'app.layout',
       'app.waitList',
       'app.settings'
-    ])
-    .config(configFunction)
-    .run(runFunction);
+      ])
+  .config(configFunction)
+  .run(runFunction);
 
   configFunction.$inject = ['$routeProvider'];
 

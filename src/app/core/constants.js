@@ -1,8 +1,8 @@
 (function() {
-  'use strict';
+	'use strict';
 
-  angular
-    .module('app.core')
-    .constant('FIREBASE_URL', 'https://cozywait.firebaseio.com/');
+	angular
+	.module('app.core')
+	.constant('FIREBASE_URL', 'https://cozywait.firebaseio.com/');
 
 })();

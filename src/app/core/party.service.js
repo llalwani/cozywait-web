@@ -20,7 +20,8 @@
     ////////////
 
     function getPartiesByUser(uid) {
-      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("deleted").equalTo(false));
+      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties'));
+      // return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("deleted").equalTo(false));
     }
 
     function getPartiesHistoryByUser(uid) {
@@ -31,6 +32,7 @@
       this.name = '';
       this.phone = '';
       this.size = '';
+      this.quote = '';
       this.done = false;
       this.notified = false;
       this.deleted = false;
