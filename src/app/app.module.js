@@ -15,7 +15,8 @@
       'app.landing',
       'app.layout',
       'app.waitList',
-      'app.settings'
+      'app.settings',
+      'app.history'
       ])
   .config(configFunction)
   .run(runFunction);

@@ -20,7 +20,7 @@
   <!--Main content that changes based on route-->
   <div ng-view class="container main-container"></div>
 
-  <footer class="footer">
+  <footer class="footer hidden">
     <div class="container">
       <p class="text-muted">Powered by <strong>CozyWait</strong></p>
     </div>
@@ -36,7 +36,7 @@
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="bower_components/moment/moment.js"></script>
-  <script src="bower_components/angular-moment/angular-moment.min.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
 
 
   
@@ -62,6 +62,13 @@
   <script src="app/waitList/directives/partyForm.directive.js"></script>
   <script src="app/waitList/directives/partyTable.directive.js"></script>
 
+  <!--history module-->
+  <script src="app/history/history.module.js"></script>
+  <script src="app/history/config.route.js"></script>
+  <script src="app/history/history.controller.js"></script>
+  <script src="app/history/directives/history.directive.js"></script>
+
+
   <!--settings module-->
   <script src="app/settings/settings.module.js"></script>
   <script src="app/settings/config.route.js"></script>
@@ -83,7 +90,6 @@
       // $('.navbar-toggle').click() //bootstrap 3.x by Richard
       $('.navbar-collapse').collapse('hide');
     });
-    
   </script>
   <script type="text/javascript">
     WebFontConfig = {

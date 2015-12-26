@@ -554,7 +554,7 @@
 			.filter('amTimeAgo', ['moment', 'amMoment', 'angularMomentConfig', function (moment, amMoment, angularMomentConfig) {
 				function amTimeAgoFilter(value, preprocess, suffix, from) {
 					var date, dateFrom;
-
+					
 					if (typeof value === 'undefined' || value === null) {
 						return '';
 					}
@@ -569,7 +569,7 @@
 					if (typeof from !== 'undefined' && dateFrom.isValid()) {
 						return amMoment.applyTimezone(date).from(dateFrom, suffix);
 					}
-
+					suffix=true;
 					return amMoment.applyTimezone(date).fromNow(suffix);
 				}
 

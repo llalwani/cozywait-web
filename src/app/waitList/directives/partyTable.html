@@ -1,13 +1,6 @@
-<form class="form-inline pull-right">
-    <div class="form-group">
-        <label class="sr-only">Search</label>
-        <input type="text" class="form-control" ng-model="vm.search" placeholder="Search">
-    </div>
-</form>
-<b class="clearfix"></b>
-<br class="hidden-xs">
 <div class="" >
     <table class="table parties">
+        <caption><label>WAITLIST</label> <input type="text" class="pull-right" ng-model="vm.search" placeholder="Search"/></caption>
         <thead>
             <tr class="warning">
                 <th class="text-center">#</th>
@@ -31,24 +24,18 @@
                     {{ party.phone }}
                 </h3>
                 <p>
-                    Waiting <label>
-                        
-                        <span ng-bind="vm.fromNow(party.created)" class="label label-default" ng-class="{'label-danger':vm.dueWaiting(party.created,party.quote)}">
-                        </span>
-                        <span class="label label-warning" ng-if="vm.dueWaiting(party.created,party.quote)">Due</span>
-
-                    </label>
-                    <br class="visible-xs"/>
-                    <span  ng-if="party.quote"> ( Quote: in {{party.quote}} mins )</span>
+                    Waiting 
+                    <span ng-bind="party.created | amTimeAgo"  class="label label-default" ng-class="{'label-danger': (vm.clock > party.quote)}"></span>
+                    <span ng-if="(vm.clock > party.quote)" class="label label-danger">Late <span ng-bind="party.quote | amTimeAgo"></span></span>
+                    <span ng-if="party.quote && (vm.clock < party.quote)"><br>( Quote: in <span ng-bind="party.quote | amTimeAgo"></span>  )</span>
                 </p>
-
             </td>
             <td>
-             <div class="actions">
+               <div class="actions">
                 <button class="btn btn-default btn-sm" style="margin-bottom:10px">
                     <i class="fa fa-user"></i>
                 </button>
-                <button ng-click="party.done=!party.done;vm.toggleDone(party)" class="btn btn-warning btn-sm" style="margin-bottom:10px">
+                <button ng-click="vm.assignTable(party)" class="btn btn-warning btn-sm" style="margin-bottom:10px">
                     <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
                     {{ party.done ? 'ASSIGNED' : 'ASSIGN TABLE' }}
                 </button>

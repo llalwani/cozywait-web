@@ -1,0 +1,42 @@
+<div class="" >
+    <table class="table parties">
+        <caption><label>HISTORY</label> <input type="text" class="pull-right" ng-model="vm.search" placeholder="Search"/></caption>
+        <thead>
+            <tr class="warning">
+                <th class="text-center">#</th>
+                <th>Info</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tr ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search">
+            <td class="text-center">
+                <div class="btn btn-lg btn-warning">    
+                    <strong>{{ party.size }}</strong>
+                </div>
+                <br>
+                <small class="text-warning">People</small>
+            </td>
+            <td>
+                <h2 class="media-heading">
+                    <strong>{{ party.name }}</strong>
+                </h2> 
+                <h3 class="media-heading">
+                    {{ party.phone }}
+                </h3>
+                <p ng-if="party.done">
+                    Assigned on <span ng-bind="party.deletedAt | amTimeAgo">
+                </p>
+                <p ng-if="!party.done">
+                    Removed on <span ng-bind="party.deletedAt | amTimeAgo">
+                </p>
+            </td>
+            <td>
+               <div class="actions">
+                <button ng-click="vm.moveToWaitList(party)" class="btn btn-default btn-sm" style="margin-bottom:10px">
+                    Move to WaitingList
+                </button>
+            </div>            
+        </td>
+    </tr>
+</table>
+</div>

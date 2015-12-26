@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('app.waitList')
-    .directive('gzPartyForm', gzPartyForm);
+  .module('app.waitList')
+  .directive('gzPartyForm', gzPartyForm);
 
   function gzPartyForm() {
     return {
@@ -28,6 +28,7 @@
     vm.addParty = addParty;
 
     function addParty() {
+      vm.newParty.quote = moment().add(vm.newParty.quote,'minutes').valueOf();
       vm.parties.$add(vm.newParty);
       vm.newParty = new partyService.Party();
     }

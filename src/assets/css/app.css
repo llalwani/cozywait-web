@@ -112,12 +112,12 @@ body {
 }
 
 .navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-  font-weight: bolder;
+  /*font-weight: bolder;*/
 }
 /* navbar style ends */
 /* footer */
 .footer {
-  position: fixed;
+  /*position: absolute;*/
   bottom: 0;
   width: 100%;
   /*Set the fixed height of the footer here */
@@ -153,9 +153,4 @@ body {
 .main-container
 {
   margin-bottom: 50px;
-}
-
-body
-{
-  /*background-color:#f5f5f5;*/
 }

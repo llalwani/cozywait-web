@@ -24,7 +24,7 @@
     }
 
     function getPartiesHistoryByUser(uid) {
-      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("created"));
+      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("deleted").equalTo(true));
     }
 
     function Party() {

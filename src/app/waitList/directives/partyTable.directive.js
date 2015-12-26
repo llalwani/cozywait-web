@@ -22,85 +22,79 @@
 
 
 
-	PartyTableController.$inject = ['$scope','$http'];
+	PartyTableController.$inject = ['$scope','$http','$timeout'];
 
-	function PartyTableController($scope,$http) {
+	function PartyTableController($scope,$http,$timeout) {
 		var vm = this;
 		vm.removeParty = removeParty;
 		vm.sendTextMessage = sendTextMessage;
-		vm.toggleDone = toggleDone;
+		vm.assignTable = assignTable;
 		vm.loading=false;
 		vm.fromNow=fromNow;
-		vm.dueWaiting=dueWaiting;
-		
+		vm.clock=moment();
+		vm.tickInterval=1000;
 
-		function removeParty(party) {
-			party.deleted = Firebase.ServerValue.TIMESTAMP;
-			party.done = false;
-			vm.parties.$save(party);
-		}
+		var tick = function() {
+        	vm.clock = moment().valueOf(); // get the current time
+        	$timeout(tick, vm.tickInterval); // reset the timer
+        }
+
+    	// Start the timer
+    	$timeout(tick, vm.tickInterval);
 
 
-		function sendTextMessage(party) {
-			vm.loading=true;
-			var local = JSON.parse(localStorage.getItem('firebase:session::cozywait'));
-			var data = {
-				number: party.phone,
-				size: party.size,
-				name: party.name,
-				party_id : party.$id,
-				uid:local.uid,
-				token:local.token
-			};
+    	function removeParty(party) {
+    		party.deletedAt = Firebase.ServerValue.TIMESTAMP;
+    		party.deleted = true;
+            party.done = false;
+    		vm.parties.$save(party);
+    	}
 
-			$.ajax({
-				url : 'https://www.mywedstory.com/cozywait/index.php',
-				type : 'POST',
-				data : data,
-				dataType:'json',
-				success : function(data) {              
-					vm.loading=false;
-				},
-				error : function(request,error) {
-					vm.loading=false;
-				},
-				complete:function()
-				{
-					vm.loading=false;
-					$scope.$apply();
-				}
-			});
-		}
 
-		function toggleDone(party) {
-			if(party.done)
-			{
-				party.deleted = Firebase.ServerValue.TIMESTAMP;
-			}else
-			{
-				party.deleted=false;
-			}
-			vm.parties.$save(party);
-		}
+    	function sendTextMessage(party) {
+    		vm.loading=true;
+    		var local = JSON.parse(localStorage.getItem('firebase:session::cozywait'));
+    		var data = {
+    			number: party.phone,
+    			size: party.size,
+    			name: party.name,
+    			party_id : party.$id,
+    			uid:local.uid,
+    			token:local.token
+    		};
 
-		function fromNow(date)
-		{
-			var m=moment(date);
-			return m.fromNow(true);
-		}
+    		$.ajax({
+    			url : 'https://www.mywedstory.com/cozywait/index.php',
+    			type : 'POST',
+    			data : data,
+    			dataType:'json',
+    			success : function(data) {              
+    				vm.loading=false;
+    			},
+    			error : function(request,error) {
+    				vm.loading=false;
+    			},
+    			complete:function()
+    			{
+    				vm.loading=false;
+    				$scope.$apply();
+    			}
+    		});
+    	}
 
-		var current=moment();
+    	function assignTable(party) {
+            party.done=true;
+            party.deleted = true;
+            party.deletedAt = Firebase.ServerValue.TIMESTAMP;
+            vm.parties.$save(party);
+        }
 
-		function dueWaiting(date,due)
-		{
-			if(due)
-			{
-				var Quote=moment(date).add(due,'minutes');
-				return Quote.diff(current);
-			}
-			return false;
-		}
+        function fromNow(date)
+        {
+          var m=moment(date);
+          return m.fromNow(true);
+      }
 
-	}
+  }
 
 })();
