@@ -73,8 +73,13 @@
 		}
 
 		function toggleDone(party) {
-			party.deleted = Firebase.ServerValue.TIMESTAMP;
-			// party.done = false;
+			if(party.done)
+			{
+				party.deleted = Firebase.ServerValue.TIMESTAMP;
+			}else
+			{
+				party.deleted=false;
+			}
 			vm.parties.$save(party);
 		}
 
