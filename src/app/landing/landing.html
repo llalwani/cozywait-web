@@ -1,21 +1,21 @@
 <div class="container">
   <div class="starter-template">
-    <h1>CozyWait</h1>
+    <h1>{{vm.isLoggedIn().restaurant?vm.isLoggedIn().restaurant:'CozyWait'}}</h1>
     <p class="lead">The smart restaurant waiting list</p>
     <a class="btn btn-lg btn-warning" href="#/register" role="button" ng-if="!vm.isLoggedIn()">Get started now!</a>
-    <a class="btn btn-lg btn-warning" href="#/waitlist" role="button" ng-if="vm.isLoggedIn()">Get started now!</a>
+    <a class="btn btn-lg btn-warning" href="#/waitlist" role="button" ng-if="vm.isLoggedIn()">Go to Dashboard</a>
   </div>
   <div class="row">
     <div class="col-md-4">
-      <h2>Ditch the clipboard</h2>
+      <h2><i class="fa fa-file-text-o"></i> &nbsp;Ditch the clipboard</h2>
       <p>Use our simple app to manage your waiting list from your PC, tablet, or phone.</p>
     </div>
     <div class="col-md-4">
-      <h2>Get your voice back</h2>
+      <h2><i class="fa fa-bullhorn"></i> &nbsp;Get your voice back</h2>
       <p>No need to yell every 5 minutes. You can text a party with just a tap.</p>
     </div>
     <div class="col-md-4">
-      <h2>Customers will love you</h2>
+      <h2><i class="fa fa-heart-o"></i> &nbsp;Customers will love you</h2>
       <p>Now they can go to the bathroom and still know their table is ready.</p>
     </div>
   </div>

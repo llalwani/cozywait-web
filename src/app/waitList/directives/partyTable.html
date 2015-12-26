@@ -70,8 +70,9 @@
                     <i ng-class="{'fa fa-check-square':party.done,'fa fa-square-o':!party.done}"></i>
                     {{ party.done ? 'Assigned' : 'Assign' }}
                 </button>
-                <button ng-click="vm.sendTextMessage(party)" class="btn btn-warning btn-sm"  style="margin-bottom:10px">
-                    <i class="fa fa-envelope-o"></i> Send SMS
+                <button ng-click="!party.done && vm.profile.credit && !vm.loading && vm.sendTextMessage(party)" class="btn btn-warning btn-sm"  style="margin-bottom:10px" ng-class="{'disabled':!vm.profile.credit || vm.loading || party.done}">
+                    <span ng-if="!vm.loading"><i class="fa fa-envelope-o"></i> Send SMS</span>
+                    <span ng-if="vm.loading">Sending <i class="fa fa-spinner fa-pulse"></i></span>
                 </button>
                 <button ng-click="vm.removeParty(party)" class="btn btn-danger btn-sm" style="margin-bottom:10px">
                     Delete <i class="fa fa-trash"></i>
