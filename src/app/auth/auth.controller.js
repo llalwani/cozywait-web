@@ -21,7 +21,7 @@
         return vm.login(user);
       })
       .then(function(auth) {
-        return authService.sendWelcomeEmail(auth.uid,user.email);
+        return authService.sendWelcomeEmail(auth.uid,user.email,user.restaurant);
       })
       .catch(function(error) {
         vm.error = error;

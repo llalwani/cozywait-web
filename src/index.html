@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
   <link rel="stylesheet" href="assets/css/app.css"/>
 </head>
-<body>
+<body ng-clock>
 
   <!--Navigation bar directive that stays at the top of every page-->
   <gz-navbar current-user="currentUser"></gz-navbar>
@@ -55,6 +55,11 @@
   <script src="app/waitList/waitList.controller.js"></script>
   <script src="app/waitList/directives/partyForm.directive.js"></script>
   <script src="app/waitList/directives/partyTable.directive.js"></script>
+
+  <!--settings module-->
+  <script src="app/settings/settings.module.js"></script>
+  <script src="app/settings/config.route.js"></script>
+  <script src="app/settings/settings.controller.js"></script>
 
   <!--landing module-->
   <script src="app/landing/landing.module.js"></script>

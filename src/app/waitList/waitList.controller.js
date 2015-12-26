@@ -12,8 +12,6 @@
     vm.profile = authService.profile(user.uid);
     vm.parties = partyService.getPartiesByUser(user.uid);
     
-    console.log(vm);
-
     $rootScope.$on('logout', function() {
       vm.parties.$destroy();
       vm.profile.$destroy();

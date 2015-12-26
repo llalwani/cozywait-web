@@ -1,7 +1,5 @@
 <form name="authForm" class="form-signin" novalidate>
-
     <h2 class="form-signin-heading" ng-bind="vm.formTitle"></h2>
-
     <p ng-show="vm.error" class="text-danger" ng-bind="vm.error"></p>
 
     <!--Optional additional inputs-->
@@ -16,6 +14,15 @@
         <p ng-show="authForm.email.$error.email" class="text-danger">Please enter a valid email.</p>
     </div>
 
+    <!-- Restaurant input -->
+    <input type="text" ng-if="vm.formTitle=='Register'" ng-model="vm.user.restaurant" ng-model-options="{ updateOn: 'default blur', debounce: { default: 500, blur: 0 } }" name="restaurant" placeholder="Restaurant name" required="" autofocus class="form-control" />
+
+    <!-- Restaurant error -->
+    <div ng-show="authForm.$submitted" ng-if="vm.formTitle=='Register'" >
+        <p ng-show="authForm.restaurant.$error.required" class="text-danger">Restaurant name is required</p>
+    </div>
+
+
     <!-- Password input -->
     <input type="password" ng-model="vm.user.password" name="password" placeholder="Password" required="" class="form-control"  ng-minlength="6"/>
 
@@ -27,7 +34,7 @@
         <p ng-show="authForm.password.$error.minlength" class="text-danger">Password should be at least 6 character long.</p>
     </div>
     <button type="submit" ng-click="authForm.$valid && vm.submitAction({user: vm.user}) " ng-value1="vm.formTitle" class="btn btn-lg btn-warning btn-block" ng-class="{'disabled':vm.loading}">
-    {{vm.formTitle}} <i ng-if="vm.loading" class=" fa fa-spinner fa-spin"></i>
+        {{vm.formTitle}} <i ng-if="vm.loading" class=" fa fa-spinner fa-spin"></i>
     </form>
 
 </form>

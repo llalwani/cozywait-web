@@ -1,0 +1,28 @@
+<div class="form-signin">
+	
+	<div class="form-group">
+		<label><i class="fa fa-cutlery"></i> &nbsp;Restaurant Name</label>
+		<input class="form-control" ng-model="profile.restaurant " placeholder="Enter Restaurant Name"/>
+	</div>
+	<div class="form-group">
+		<label><i class="fa fa-user-secret"></i> &nbsp;Name</label>
+		<input class="form-control" ng-model="profile.name" placeholder="Enter Name"/>
+	</div>
+	<div class="form-group">
+		<label><i class="fa fa-envelope-o"></i> &nbsp;SMS Body</label>
+		<textarea class="form-control" ng-model="profile.sms" max-length="160"></textarea>
+		<p class="text-right text-danger"><small>( {{profile.sms.length}}/160 )</small></p>
+	</div>
+	<div class="text-danger bg-warning">
+		<p style="padding:10px;">
+			All the values will be automatically saved <i class="fa fa-smile-o"></i>
+		</p>
+	</div>
+	<hr>
+	<div class="form-group">
+		<button class="btn btn-lg btn-warning">SMS Credit {{profile.credit}}</button>
+	</div>
+	<div class="form-group">
+		Contact here <a href="mailto:hardikmsondagar@gmail.com">hardikmsondagar@gmail.com</a> to purchase credit or any customization.
+	</div>
+</div>

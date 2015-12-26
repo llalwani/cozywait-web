@@ -13,7 +13,14 @@
     var currentUser;
 
     firebaseAuthObject.$onAuth(function(auth) {
-      currentUser = auth;
+      if(!angular.isUndefined(auth) && auth!=null)
+      {
+        currentUser = profile(auth.uid);  
+      }else
+      {
+        currentUser=auth;
+      }
+      
     });
 
     var service = {
@@ -47,12 +54,13 @@
       return currentUser;
     }
 
-    function sendWelcomeEmail(uid,email) {
+    function sendWelcomeEmail(uid,email,restaurant) {
       firebaseDataService.users.child(uid).set({
         email: email, 
+        restaurant:restaurant,
         name: name||firstPartOfEmail(email),
         credit: 3,
-        sms: "Your table is ready, thank you for waiting :-)"
+        sms: "Thank you for waiting, your table is ready"
       });
     }
 

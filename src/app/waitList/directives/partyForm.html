@@ -9,19 +9,10 @@
         <input ng-model="vm.newParty.size" type="number" class="form-control" placeholder="Number of person" ng-required="true" min="1" name="size">
     </div>
     <button type="submit" class="btn btn-warning" ng-click="PartyForm.$valid && vm.addParty();">Add Customer</button>
-    <button class="btn btn-default pull-right">SMS Credit <span ng-bind="vm.profile.credit"></span></button>
-    <!-- <p ng-if="PartyForm.$invalid">
-        <span ng-if="PartyForm.phone.$dirty && PartyForm.phone.$invalid" class="text-danger">
-            Mobile number should have 10 digits.
-            <br>
-        </span>
-        <span ng-if="PartyForm.name.$dirty && PartyForm.name.$error.required" class="text-danger">
-            Please enter name.
-            <br>    
-        </span>
-        <span ng-if="PartyForm.size.$dirty && PartyForm.size.$invalid" class="text-danger">
-            Number of persons should be greater than 0.    
-        </span>
-    </p> -->
 </form>
+<div class="text-danger bg-warning"  ng-if="vm.profile.credit==0">
+    <p style="padding:10px;">
+        Your SMS credit is 0, contact here <a href="mailto:hardikmsondagar@gmail.com">hardikmsondagar@gmail.com</a> to purchase credits or any customization.
+    </p>
+</div>
 

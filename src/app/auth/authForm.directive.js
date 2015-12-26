@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('app.auth')
-    .directive('gzAuthForm', gzAuthForm);
+  .module('app.auth')
+  .directive('gzAuthForm', gzAuthForm);
 
   function gzAuthForm() {
     return {

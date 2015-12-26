@@ -2,16 +2,16 @@
   'use strict';
 
   angular
-    .module('app.layout')
-    .directive('gzNavbar', function() {
-      return {
-        templateUrl: 'app/layout/navbar.html',
-        restrict: 'E',
-        scope: {},
-        controller: NavBarController,
-        controllerAs: 'vm'
-      }
-    });
+  .module('app.layout')
+  .directive('gzNavbar', function() {
+    return {
+      templateUrl: 'app/layout/navbar.html',
+      restrict: 'E',
+      scope: {},
+      controller: NavBarController,
+      controllerAs: 'vm'
+    }
+  });
 
   NavBarController.$inject = ['$location', 'authService'];
 
