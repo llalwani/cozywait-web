@@ -1,0 +1,61 @@
+<div class="" >
+	<table class="table parties table-bordered">
+		<caption>
+			<h2>
+				<strong>
+					<span ng-bind="user.name"></span>
+					<br>
+					<small>
+						<span ng-bind="user.phone">
+						</span>
+					</small>
+					<br>
+					<small> Customer History</small>
+				</strong>
+			</h2>
+
+		</caption>
+		<thead>
+			<tr class="warning">
+				<th class="text-center">#</th>
+				<th>Booked</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tr class="party" ng-repeat="item in history | orderBy:['-created']">
+			<td class="text-center">
+				<div class="btn btn-link btn-warning btn-sm">    
+					<strong>{{ item.size }}</strong>
+				</div>
+				<br>
+				<small class="text-warning">People</small>
+			</td>
+			<td>
+				<span ng-bind="item.created | amTimeAgo"></span> ago
+
+			</td>
+			<td>
+
+				<span ng-if="!item.deleted">
+					<label class="label label-default"><i class="fa fa-clock-o"></i> Waiting</label><br>
+					Waiting since 
+					<strong>
+						<span ng-bind="item.created | amTimeAgo" class1="label label-default">
+						</span>
+					</strong>
+				</span>
+				<span ng-if="item.deleted && item.done">
+					<label class="label label-success"><i class="fa fa-smile-o"></i> Tabel Assigned</label>
+					<br>
+					Assigned on <span ng-bind="item.deletedAt | amTimeAgo"></span>
+				</span>
+				<span ng-if="item.deleted && !item.done">
+					<label class="label label-warning"><i class="fa fa-times"></i> No Show</label>
+					<br>
+					Removed on <span ng-bind="item.deletedAt | amTimeAgo"></span>
+				</span>
+
+			</td>
+		</tr>
+	</table>
+</div>

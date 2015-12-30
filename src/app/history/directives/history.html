@@ -8,7 +8,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tr ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search">
+        <tr class="party" ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search">
             <td class="text-center">
                 <div class="btn btn-lg btn-warning">    
                     <strong>{{ party.size }}</strong>

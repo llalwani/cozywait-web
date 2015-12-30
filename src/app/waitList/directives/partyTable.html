@@ -8,7 +8,7 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tr ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search" ng-class="{'warning':party.done,'success':(!party.done && party.notified)}">
+        <tr ng-repeat="party in vm.parties | orderBy:['created'] | filter:vm.search" class="party" ng-class="{'warning':party.done,'success':(!party.done && party.notified)}">
             <td class="text-center">
                 <div class="btn btn-lg btn-warning">    
                     <strong>{{ party.size }}</strong>
@@ -24,15 +24,34 @@
                     {{ party.phone }}
                 </h3>
                 <p>
-                    Waiting 
-                    <span ng-bind="party.created | amTimeAgo"  class="label label-default" ng-class="{'label-danger': (vm.clock > party.quote)}"></span>
-                    <span ng-if="(vm.clock > party.quote)" class="label label-danger">Late <span ng-bind="party.quote | amTimeAgo"></span></span>
-                    <span ng-if="party.quote && (vm.clock < party.quote)"><br>( Quote: in <span ng-bind="party.quote | amTimeAgo"></span>  )</span>
+                    Waiting since  <br class="visible-xs"/>
+                    <strong><span ng-bind="party.created | amTimeAgo" class1="label label-default" ng-class="{'text-danger': (vm.clock > party.quote)}">
+                    </span></strong>
+                    <br>
+                    <span ng-if="party.quote">
+                        Quoted waiting time <br class="visible-xs"/>
+                        <strong>
+                            <span class="text-info">
+                                {{vm.dateDiff(party.created,party.quote)}}
+                                minutes
+                            </span>
+                        </strong>
+                    </span>
                 </p>
+                <p>
+                    <span ng-if="(vm.clock > party.quote)" class="bg-warning text-danger" style="padding:10px;white-space: nowrap;">
+                        <strong>
+                            <i class="fa fa-clock-o"></i> Late <span ng-bind="party.quote | amTimeAgo"></span>
+                        </strong>
+                    </span>
+                </p>
+
+
+
             </td>
             <td>
-               <div class="actions">
-                <button class="btn btn-default btn-sm" style="margin-bottom:10px">
+             <div class="actions">
+                <button class="btn btn-default btn-sm" style="margin-bottom:10px" ng-click="vm.showUserHistory(party)">
                     <i class="fa fa-user"></i>
                 </button>
                 <button ng-click="vm.assignTable(party)" class="btn btn-warning btn-sm" style="margin-bottom:10px">
@@ -55,6 +74,7 @@
                         </i>
                     </strong>
                 </div>
+
             </div>
         </td>
     </tr>

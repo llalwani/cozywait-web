@@ -15,10 +15,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#/login" ng-hide="vm.isLoggedIn()">Log in</a></li>
                 <li><a href="#/register" ng-hide="vm.isLoggedIn()">Register</a></li>
-                <li><a href="#/settings" ng-show="vm.isLoggedIn()">SMS Credit <span class="badge">{{vm.isLoggedIn().credit}}</span></a></li>
-                <li><a href="#/waitlist" ng-show="vm.isLoggedIn()">Waitlist</a></li>
+                
+                <li><a href="#/waitlist" ng-show="vm.isLoggedIn()"><i class="fa fa-file-text-o"></i> Waitlist</a></li>
                 <li><a href="#/history" ng-show="vm.isLoggedIn()">History</a></li>
                 <li><a href="#/settings" ng-show="vm.isLoggedIn()">Settings</a></li>
+                <li><a href="#/settings" ng-show="vm.isLoggedIn()">SMS Credit <span class="badge">{{vm.isLoggedIn().credit}}</span></a></li>
                 <li><a href="" ng-click="vm.logout()" ng-show="vm.isLoggedIn()">Log out</a></li>
             </ul>
         </div><!--/.nav-collapse -->

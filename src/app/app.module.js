@@ -5,6 +5,7 @@
   .module('app', [
       // Angular modules.
       'ngRoute',
+      'ngAnimate',
 
       // Third party modules.
       'firebase',

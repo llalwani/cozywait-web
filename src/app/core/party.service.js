@@ -12,6 +12,7 @@
     var service = {
       getPartiesByUser: getPartiesByUser,
       getPartiesHistoryByUser:getPartiesHistoryByUser,
+      getUserHistoryByUser:getUserHistoryByUser,
       Party: Party
     };
 
@@ -25,6 +26,10 @@
 
     function getPartiesHistoryByUser(uid) {
       return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("deleted").equalTo(true));
+    }
+
+    function getUserHistoryByUser(uid,phone) {
+      return $firebaseArray(firebaseDataService.customers.child(uid).child('parties').orderByChild("phone").equalTo(phone));
     }
 
     function Party() {
