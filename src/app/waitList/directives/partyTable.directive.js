@@ -77,7 +77,7 @@
 
 
         function sendTextMessage(party) {
-          vm.loading=true;
+          vm.loading=party.$id;
           var local = JSON.parse(localStorage.getItem('firebase:session::cozywait'));
           var data = 
           {

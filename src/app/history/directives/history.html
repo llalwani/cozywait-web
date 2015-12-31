@@ -5,6 +5,7 @@
             <tr class="warning">
                 <th class="text-center">#</th>
                 <th>Info</th>
+                <th>Status</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,12 +24,21 @@
                 <h3 class="media-heading">
                     {{ party.phone }}
                 </h3>
-                <p ng-if="party.done">
-                    Assigned on <span ng-bind="party.deletedAt | amTimeAgo">
-                </p>
-                <p ng-if="!party.done">
-                    Removed on <span ng-bind="party.deletedAt | amTimeAgo">
-                </p>
+            </td>
+            <td>
+                <span ng-if="party.deleted && party.done">
+                    <button class="btn btn-success btn-sm">
+                        <i class="fa fa-smile-o"></i> Tabel Assigned
+                    </button>
+                    <br>
+                    Assigned on <span ng-bind="party.deletedAt | amTimeAgo"></span>
+                </span>
+                <span ng-if="party.deleted && !party.done">
+                    <button class="btn btn-danger btn-sm"><i class="fa fa-times"></i> No Show</button>
+                    <br>
+                    Removed on <span ng-bind="party.deletedAt | amTimeAgo"></span>
+                </span>
+
             </td>
             <td>
                <div class="actions">
